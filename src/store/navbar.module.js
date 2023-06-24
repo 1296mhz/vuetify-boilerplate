@@ -1,4 +1,4 @@
-export default {
+export const navbar = {
     namespaced: true,
     state: {
         leftNavBarDrawer: false,
@@ -6,7 +6,7 @@ export default {
     mutations: {
         setLeftNavBarDrawer(state, drawer) {
             Vue.set(state, 'leftNavBarDrawer', drawer);
-          },
+        },
     },
     actions: {
 
@@ -14,4 +14,4 @@ export default {
     getters: {
 
     },
-  };
+};

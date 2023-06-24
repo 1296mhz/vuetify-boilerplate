@@ -1,4 +1,4 @@
-export default {
+export const loading = {
     namespaced: true,
     state: {
         loading: false,
@@ -6,14 +6,14 @@ export default {
     mutations: {
         setLoading(state, loading) {
             Vue.set(state, 'loading', loading);
-          },
+        },
     },
     actions: {
-        setLoading({commit}, payload) {
+        setLoading({ commit }, payload) {
             commit('setLoading', payload);
-          },
+        },
     },
     getters: {
 
     },
-  };
+};
