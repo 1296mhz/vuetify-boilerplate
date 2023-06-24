@@ -1,4 +1,4 @@
-import config from 'config';
+const config = require("../config/default.json");
 import { authHeader } from '../_helpers';
 
 export const userService = {
