@@ -42,15 +42,15 @@
                 <v-btn v-if="title === 'Reports'" icon @click="drawerReports = !drawerReports">
                     <v-icon>mdi-file-tree</v-icon>
                 </v-btn>
-                <v-breadcrumbs :items="breadCrumbs">
+                <!-- <v-breadcrumbs :items="breadCrumbs">
                     <template v-slot:item="{ item }">
                         <v-breadcrumbs-item :href="item.href" :disabled="item.disabled" exact>
                             {{ item.text }}
                         </v-breadcrumbs-item>
                     </template>
-                </v-breadcrumbs>
+                </v-breadcrumbs> -->
                 <v-spacer></v-spacer>
-
+<!-- 
                 <div class="text-center">
                     <v-menu offset-y :close-on-content-click="closeOnContentClick">
                         <template v-slot:activator="{ on, attrs }">
@@ -86,18 +86,19 @@
                                             second: 'numeric',
                                         })}</span>`
                                             "></v-list-item-subtitle>
-                                        <v-list-item-subtitle v-html="`<span class='text--primary'>${item.user.customer}</span>${item.message.t}`"></v-list-item-subtitle>
+                                        <v-list-item-subtitle
+                                            v-html="`<span class='text--primary'>${item.user.customer}</span>${item.message.t}`"></v-list-item-subtitle>
                                     </v-list-item-content>
                                 </v-list-item>
                                 <v-divider :key="index" v-if="index < requests.length - 1"></v-divider>
                             </template>
                         </v-list>
                     </v-menu>
-                </div>
-                <v-toolbar-title>{{ authUser }}</v-toolbar-title>
+                </div> -->
+                <!-- <v-toolbar-title>{{ authUser }}</v-toolbar-title>
                 <v-btn icon @click="exit()">
                     <v-icon>exit_to_app</v-icon>
-                </v-btn>
+                </v-btn> -->
             </v-app-bar>
 
             <v-main>
@@ -135,12 +136,13 @@ export default Vue.extend({
         }
     },
     computed: {
-        ...mapGetters([
-            'lastError',
-            'errorsCount',
-            'lastMessage',
-            'messagesCount',
-        ]),
+        ...mapGetters({
+            lastError: 'alert/lastError',
+            errorsCount: 'alert/errorsCount',
+            lastMessage: 'alert/lastMessage',
+            messagesCount: 'alert/messagesCount',
+            loading: 'loading/getLoading'
+        }),
         menuItems() {
             const loggedIn = localStorage.getItem('user')
             const loggedInJSON = JSON.parse(loggedIn)
@@ -153,31 +155,29 @@ export default Vue.extend({
                 }
             )
         },
-        breadCrumbs() {
-            if (typeof this.$route.meta.breadCrumb === 'function') {
-                return this.$route.meta.breadCrumb.call(this, this.$route)
-            }
-            return this.$route.meta.breadCrumb
-        },
+        // breadCrumbs() {
+        //     if (typeof this.$route.meta.breadCrumb === 'function') {
+        //         return this.$route.meta.breadCrumb.call(this, this.$route)
+        //     }
+        //     return this.$route.meta.breadCrumb
+        // },
         leftNavBarDrawer: {
             get: function () {
-                return this.$store.state.leftNavBarDrawer
+                return false
+                //return this.$store.state.leftNavBarDrawer
             },
             set: function (newVal) {
                 this.$store.commit(`setLeftNavBarDrawer`, newVal)
             },
         },
-        loading() {
-            return this.$store.state.loading
-        },
         title() {
             return this.$route.name
         },
         authUser() {
-            return this.$store.state.auth.user.data.email
+            return 'xxx@xxx'
         },
         authCustomer() {
-            return this.$store.state.auth.user.data.customer
+            return 'xxx'
         },
         unreadRequests() {
             return []
@@ -199,12 +199,12 @@ export default Vue.extend({
     },
 
     watch: {
-        errorsCount: function () {
-            this.errorBar = true
-        },
-        messagesCount: function () {
-            this.messageBar = true
-        },
+        // errorsCount: function () {
+        //     this.errorBar = true
+        // },
+        // messagesCount: function () {
+        //     this.messageBar = true
+        // },
     },
 
     methods: {
@@ -222,6 +222,7 @@ export default Vue.extend({
     created() {
     },
     async mounted() {
+        console.log(this)
     },
 })
 </script>

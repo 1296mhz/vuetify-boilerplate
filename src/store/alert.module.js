@@ -23,9 +23,7 @@ export const alert = {
         },
     },
     getters: {
-        lastError: (state) => {
-            return state.errors.length > 0 ? state.errors[state.errors.length - 1] : '';
-        },
+        lastError: state => state.errors.length > 0 ? state.errors[state.errors.length - 1] : '',
         errorsCount: (state) => {
             return state.errors.length;
         },

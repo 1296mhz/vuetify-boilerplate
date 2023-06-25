@@ -28,6 +28,15 @@
       <v-spacer></v-spacer>
 
       <v-btn
+      @click="signIn()"
+
+        text
+      >
+        <span class="mr-2">Вход</span>
+        <v-icon>mdi-open-in-new</v-icon>
+      </v-btn>
+
+      <v-btn
         href="https://github.com/vuetifyjs/vuetify/releases/latest"
         target="_blank"
         text
@@ -38,23 +47,30 @@
     </v-app-bar>
 
     <v-main>
-      <HelloWorld/>
+      <router-view></router-view>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+// import HelloWorld from './components/HelloWorld';
 
 export default {
   name: 'App',
 
   components: {
-    HelloWorld,
+    // HelloWorld,
   },
 
   data: () => ({
     //
+    
   }),
+  methods: {
+    signIn() {
+      console.log(this)
+      this.$router.push('/login')
+    }
+  }
 };
 </script>

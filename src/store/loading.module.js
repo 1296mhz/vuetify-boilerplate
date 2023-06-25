@@ -16,6 +16,6 @@ export const loading = {
         },
     },
     getters: {
-
+        getLoading: state => state.loading
     },
 };

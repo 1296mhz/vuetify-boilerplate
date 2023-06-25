@@ -83,10 +83,10 @@ export default Vue.extend({
         async submit() {
             this.progressBar = true
             try {
-                await this.$store.dispatch('auth/login', {
-                    password: this.password,
-                    email: this.email,
-                })
+                // await this.$store.dispatch('auth/login', {
+                //     password: this.password,
+                //     email: this.email,
+                // })
                 this.$router.push('/')
             } finally {
                 this.progressBar = false
