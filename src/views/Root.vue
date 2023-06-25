@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-overlay :value="!loading">
+        <v-overlay :value="loading">
             <v-progress-circular indeterminate size="64">Loading</v-progress-circular>
         </v-overlay>
         <v-app id="inspire">
@@ -225,7 +225,7 @@ export default Vue.extend({
     created() {
     },
     async mounted() {
-        console.log(this)
+        console.log( this.$store)
     },
 })
 </script>
