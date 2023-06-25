@@ -50,7 +50,7 @@
                     </template>
                 </v-breadcrumbs> -->
                 <v-spacer></v-spacer>
-<!-- 
+                <!-- 
                 <div class="text-center">
                     <v-menu offset-y :close-on-content-click="closeOnContentClick">
                         <template v-slot:activator="{ on, attrs }">
@@ -121,7 +121,7 @@
 <script>
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
-
+import { filter } from 'lodash'
 export default Vue.extend({
     name: 'RootView',
     data() {
@@ -143,10 +143,13 @@ export default Vue.extend({
             messagesCount: 'alert/messagesCount',
             loading: 'loading/getLoading'
         }),
+        // loading() {
+        //     return false
+        // },
         menuItems() {
             const loggedIn = localStorage.getItem('user')
             const loggedInJSON = JSON.parse(loggedIn)
-            return Vue._.filter(
+            return filter(
                 this.$router.options.routes[1].children,
                 (v) => {
                     return !(
