@@ -14,6 +14,6 @@ export const navbar = {
 
     },
     getters: {
-
+        getLeftNavBarDrawer: state => state.leftNavBarDrawer
     },
 };

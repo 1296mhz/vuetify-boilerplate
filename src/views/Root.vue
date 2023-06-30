@@ -39,9 +39,6 @@
 
             <v-app-bar app color="primary" dark fixed clipped-left>
                 <v-app-bar-nav-icon @click.stop="leftNavBarDrawer = !leftNavBarDrawer"></v-app-bar-nav-icon>
-                <v-btn v-if="title === 'Reports'" icon @click="drawerReports = !drawerReports">
-                    <v-icon>mdi-file-tree</v-icon>
-                </v-btn>
                 <!-- <v-breadcrumbs :items="breadCrumbs">
                     <template v-slot:item="{ item }">
                         <v-breadcrumbs-item :href="item.href" :disabled="item.disabled" exact>
@@ -121,7 +118,7 @@
 <script>
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
-import { filter } from 'lodash'
+// import { filter } from 'lodash'
 export default Vue.extend({
     name: 'RootView',
     data() {
@@ -141,22 +138,24 @@ export default Vue.extend({
             errorsCount: 'alert/errorsCount',
             lastMessage: 'alert/lastMessage',
             messagesCount: 'alert/messagesCount',
-            loading: 'loading/getLoading'
+            loading: 'loading/getLoading',
+            getLeftNavBarDrawer: 'navbar/getLeftNavBarDrawer'
         }),
         // loading() {
         //     return false
         // },
         menuItems() {
-            const loggedIn = localStorage.getItem('user')
-            const loggedInJSON = JSON.parse(loggedIn)
-            return filter(
-                this.$router.options.routes[1].children,
-                (v) => {
-                    return !(
-                        !v.meta.authorize.includes(loggedInJSON.data.role)
-                    )
-                }
-            )
+            // const loggedIn = localStorage.getItem('user')
+            // const loggedInJSON = JSON.parse(loggedIn)
+            // return filter(
+            //     this.$router.options.routes[1].children,
+            //     (v) => {
+            //         return !(
+            //             !v.meta.authorize.includes(loggedInJSON.data.role)
+            //         )
+            //     }
+            // )
+            return []
         },
         // breadCrumbs() {
         //     if (typeof this.$route.meta.breadCrumb === 'function') {
@@ -166,11 +165,10 @@ export default Vue.extend({
         // },
         leftNavBarDrawer: {
             get: function () {
-                return false
-                //return this.$store.state.leftNavBarDrawer
+                return this.getLeftNavBarDrawer
             },
             set: function (newVal) {
-                this.$store.commit(`setLeftNavBarDrawer`, newVal)
+                this.$store.commit(`navbar/setLeftNavBarDrawer`, newVal)
             },
         },
         title() {
@@ -215,7 +213,7 @@ export default Vue.extend({
             this.leftNavBarDrawer = false
         },
         exit() {
-            this.$store.dispatch('auth/logout')
+            // this.$store.dispatch('auth/logout')
             this.$router.push('/login')
         },
     },
