@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar
+    <!-- <v-app-bar
       app
       color="primary"
       dark
@@ -44,7 +44,7 @@
         <span class="mr-2">Latest Release</span>
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
-    </v-app-bar>
+    </v-app-bar> -->
 
     <v-main>
       <router-view></router-view>
@@ -53,24 +53,17 @@
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld';
 
 export default {
   name: 'App',
 
   components: {
-    // HelloWorld,
   },
 
   data: () => ({
-    //
-    
   }),
   methods: {
-    signIn() {
-      console.log(this)
-      this.$router.push('/login')
-    }
+
   }
 };
 </script>

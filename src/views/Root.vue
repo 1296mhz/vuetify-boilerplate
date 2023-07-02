@@ -1,10 +1,55 @@
 <template>
     <div>
         <v-overlay :value="loading">
-            <v-progress-circular indeterminate size="64">Loading</v-progress-circular>
+            <v-progress-circular indeterminate size="64"
+                >Loading</v-progress-circular
+            >
         </v-overlay>
         <v-app id="inspire">
-            <v-navigation-drawer v-model="leftNavBarDrawer" app disable-resize-watcher disable-route-watcher temporary>
+            <v-app-bar app color="primary" dark>
+                <div class="d-flex align-center">
+                    <v-img
+                        alt="Vuetify Logo"
+                        class="shrink mr-2"
+                        contain
+                        src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+                        transition="scale-transition"
+                        width="40"
+                    />
+
+                    <v-img
+                        alt="Vuetify Name"
+                        class="shrink mt-1 hidden-sm-and-down"
+                        contain
+                        min-width="100"
+                        src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
+                        width="100"
+                    />
+                </div>
+
+                <v-spacer></v-spacer>
+
+                <v-btn @click="signIn()" text>
+                    <span class="mr-2">Вход</span>
+                    <v-icon>mdi-open-in-new</v-icon>
+                </v-btn>
+
+                <v-btn
+                    href="https://github.com/vuetifyjs/vuetify/releases/latest"
+                    target="_blank"
+                    text
+                >
+                    <span class="mr-2">Latest Release</span>
+                    <v-icon>mdi-open-in-new</v-icon>
+                </v-btn>
+            </v-app-bar>
+            <v-navigation-drawer
+                v-model="leftNavBarDrawer"
+                app
+                disable-resize-watcher
+                disable-route-watcher
+                temporary
+            >
                 <template v-slot:prepend>
                     <v-list-item two-line>
                         <v-list-item-avatar>
@@ -15,16 +60,27 @@
                             <v-list-item-title>{{
                                 authCustomer
                             }}</v-list-item-title>
-                            <v-list-item-subtitle>Logged In</v-list-item-subtitle>
+                            <v-list-item-subtitle
+                                >Logged In</v-list-item-subtitle
+                            >
                         </v-list-item-content>
-                        <v-btn icon @click="leftNavBarDrawer = !leftNavBarDrawer">
+                        <v-btn
+                            icon
+                            @click="leftNavBarDrawer = !leftNavBarDrawer"
+                        >
                             <v-icon>mdi-chevron-left</v-icon>
                         </v-btn>
                     </v-list-item>
                     <v-divider></v-divider>
                 </template>
                 <v-list dense>
-                    <v-list-item v-for="item in menuItems" :to="item.path" :key="item.name" link @click="closeMenu">
+                    <v-list-item
+                        v-for="item in menuItems"
+                        :to="item.path"
+                        :key="item.name"
+                        link
+                        @click="closeMenu"
+                    >
                         <v-list-item-icon>
                             <v-icon>{{ item.icon }}</v-icon>
                         </v-list-item-icon>
@@ -38,7 +94,9 @@
             </v-navigation-drawer>
 
             <v-app-bar app color="primary" dark fixed clipped-left>
-                <v-app-bar-nav-icon @click.stop="leftNavBarDrawer = !leftNavBarDrawer"></v-app-bar-nav-icon>
+                <v-app-bar-nav-icon
+                    @click.stop="leftNavBarDrawer = !leftNavBarDrawer"
+                ></v-app-bar-nav-icon>
                 <!-- <v-breadcrumbs :items="breadCrumbs">
                     <template v-slot:item="{ item }">
                         <v-breadcrumbs-item :href="item.href" :disabled="item.disabled" exact>
@@ -46,6 +104,7 @@
                         </v-breadcrumbs-item>
                     </template>
                 </v-breadcrumbs> -->
+                <v-toolbar-title>{{ appTitleText }}</v-toolbar-title>
                 <v-spacer></v-spacer>
                 <!-- 
                 <div class="text-center">
@@ -92,10 +151,10 @@
                         </v-list>
                     </v-menu>
                 </div> -->
-                <!-- <v-toolbar-title>{{ authUser }}</v-toolbar-title>
+                <v-toolbar-title>{{ authUser }}</v-toolbar-title>
                 <v-btn icon @click="exit()">
                     <v-icon>exit_to_app</v-icon>
-                </v-btn> -->
+                </v-btn>
             </v-app-bar>
 
             <v-main>
@@ -130,6 +189,7 @@ export default Vue.extend({
             timeout: 3000,
             polling: null,
             mini: true,
+            appTitleText: process.env.VUE_APP_TITLE_TEXT,
         }
     },
     computed: {
@@ -139,7 +199,7 @@ export default Vue.extend({
             lastMessage: 'alert/lastMessage',
             messagesCount: 'alert/messagesCount',
             loading: 'loading/getLoading',
-            getLeftNavBarDrawer: 'navbar/getLeftNavBarDrawer'
+            getLeftNavBarDrawer: 'navbar/getLeftNavBarDrawer',
         }),
         // loading() {
         //     return false
@@ -216,14 +276,14 @@ export default Vue.extend({
             // this.$store.dispatch('auth/logout')
             this.$router.push('/login')
         },
+        signIn() {
+            this.$router.push('/login')
+        },
     },
-    beforeDestroy() {
-
-    },
-    created() {
-    },
+    beforeDestroy() {},
+    created() {},
     async mounted() {
-        console.log( this.$store)
+        console.log(this.$store)
     },
 })
 </script>

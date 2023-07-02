@@ -4,13 +4,18 @@ import LoginPage from '../views/Login.vue';
 import RootPage from '../views/Root.vue';
 
 Vue.use(VueRouter)
+export const routes = [
+  { path: '/', component: RootPage },
+]
+// console.log(process.env.VUE_APP_AUTH)
+// console.log(typeof process.env.VUE_APP_AUTH)
+const vueAppAuth = new Boolean(process.env.VUE_APP_AUTH);
+console.log(vueAppAuth)
+if (vueAppAuth) {routes.push({ path: '/login', component: LoginPage })}
 
 export const router = new VueRouter({
   mode: 'history',
-  routes: [
-    { path: '/', component: RootPage },
-    { path: '/login', component: LoginPage }
-  ]
+  routes: routes,
 });
 
 router.beforeEach((to, from, next) => {

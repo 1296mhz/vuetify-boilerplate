@@ -76,7 +76,7 @@ export default Vue.extend({
         },
     },
     mounted() {
-        this.$store.dispatch('setLoading', true)
+        // this.$store.dispatch('setLoading', true)
     },
     methods: {
         // Login
