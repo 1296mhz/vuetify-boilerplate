@@ -77,22 +77,8 @@ export default Vue.extend({
         },
     },
     mounted() {
-        // this.$store.dispatch('setLoading', true)
     },
     methods: {
-        // Login
-        async submit() {
-            this.progressBar = true
-            try {
-                // await this.$store.dispatch('auth/login', {
-                //     password: this.password,
-                //     email: this.email,
-                // })
-                this.$router.push('/')
-            } finally {
-                this.progressBar = false
-            }
-        },
         handleSubmit () {
             this.submitted = true;
             const { username, password } = this;
