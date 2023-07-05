@@ -10,7 +10,7 @@ export const routes = [
 // console.log(process.env.VUE_APP_AUTH)
 // console.log(typeof process.env.VUE_APP_AUTH)
 const vueAppAuth = new Boolean(process.env.VUE_APP_AUTH);
-console.log(vueAppAuth)
+
 if (vueAppAuth) {routes.push({ path: '/login', component: LoginPage })}
 
 export const router = new VueRouter({

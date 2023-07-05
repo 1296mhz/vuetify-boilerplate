@@ -12,8 +12,8 @@
                                 </div>
                             </v-card-title>
                             <v-card-text>
-                                <v-form @submit.prevent="submit">
-                                    <v-text-field v-model="email" label="Login" prepend-icon="person"
+                                <v-form @submit.prevent="handleSubmit">
+                                    <v-text-field v-model="username" label="Login" prepend-icon="person"
                                         type="text"></v-text-field>
                                     <v-text-field v-model="password" label="Password" prepend-icon="lock"
                                         type="password"></v-text-field>
@@ -50,8 +50,9 @@ import Vue from 'vue'
 export default Vue.extend({
     name: 'LoginView',
     data: () => ({
-        email: null,
+        username: null,
         password: null,
+        submitted: false,
         errorBar: false,
         progressBar: false,
         logoImageHeight: 150,
@@ -92,6 +93,18 @@ export default Vue.extend({
                 this.progressBar = false
             }
         },
+        handleSubmit () {
+            this.submitted = true;
+            const { username, password } = this;
+            const { dispatch } = this.$store;
+            if (username && password) {
+                dispatch('authentication/login', { username, password });
+            }
+        }
+    },
+    created () {
+        // reset login status
+        this.$store.dispatch('authentication/logout');
     },
 })
 </script>
