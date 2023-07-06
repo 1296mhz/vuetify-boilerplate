@@ -38,7 +38,7 @@
         </v-snackbar>
         <v-footer app>
             <v-col class="text-end" cols="12">
-                <p>HelloWorld!</p>
+                <p>All Pigs Must Die!</p>
             </v-col>
         </v-footer>
     </v-app>
@@ -46,35 +46,42 @@
 
 <script>
 import Vue from 'vue'
-
+import { mapGetters } from 'vuex'
 export default Vue.extend({
     name: 'LoginView',
     data: () => ({
         username: null,
         password: null,
         submitted: false,
-        errorBar: false,
         progressBar: false,
         logoImageHeight: 150,
         logoImageWidth: 150,
     }),
 
     computed: {
-        loggedIn() {
-            return this.$store.state.auth.status.loggedIn
-        },
-        lastError() {
-            return this.$store.getters.lastError
-        },
+        ...mapGetters({
+            lastError: 'alert/lastError',
+            getErrorBar: 'alert/getErrorBar',
+            errorsCount: 'alert/errorsCount',
+            lastMessage: 'alert/lastMessage',
+            messagesCount: 'alert/messagesCount',
+            loading: 'loading/getLoading',
+            getLeftNavBarDrawer: 'navbar/getLeftNavBarDrawer',
+        }),
         errorsCount() {
             return this.$store.getters.errorsCount
         },
+        errorBar: {
+            get() {
+                return this.getErrorBar
+            },
+            async set(val) {
+                const { dispatch } = this.$store;
+                dispatch('alert/errorBar', val);
+            }
+        }
     },
-
     watch: {
-        errorsCount() {
-            this.errorBar = true
-        },
     },
     mounted() {
     },
@@ -89,7 +96,6 @@ export default Vue.extend({
         }
     },
     created () {
-        // reset login status
         this.$store.dispatch('authentication/logout');
     },
 })

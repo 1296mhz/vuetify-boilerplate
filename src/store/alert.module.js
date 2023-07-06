@@ -3,6 +3,7 @@ import Vue from 'vue'
 export const alert = {
     namespaced: true,
     state: {
+        errorBar: false,
         errors: [],
         snackbarMessages: [],
     },
@@ -10,16 +11,23 @@ export const alert = {
         setError(state, error = '') {
             Vue.set(state, 'errors', [...state.errors, error]);
         },
+        setErrorBar(state, error = false) {
+            Vue.set(state, 'errorBar', error);
+        },
         setMessage(state, message) {
             Vue.set(state, 'snackbarMessages', [...state.snackbarMessages, message]);
         },
     },
     actions: {
-        setMessage({ commit }, payload) {
+        message({ commit }, payload) {
             commit('setMessage', payload);
         },
-        setError({ commit }, payload) {
+        error({ commit }, payload) {
             commit('setError', payload);
+            commit('setErrorBar', payload);
+        },
+        errorBar({ commit }, payload) {
+            commit('setErrorBar', payload);
         },
     },
     getters: {
@@ -27,6 +35,7 @@ export const alert = {
         errorsCount: state => state.errors.length,
         lastMessage: state =>  state.snackbarMessages.length > 0 ? state.snackbarMessages[state.snackbarMessages.length - 1] : '',
         messagesCount: state => state.snackbarMessages.length,
+        getErrorBar: state => state.errorBar,
     },
 };
 

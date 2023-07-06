@@ -35,7 +35,7 @@
 
                         <v-list-item-content>
                             <v-list-item-title>{{
-                                authCustomer
+                                userFullName
                             }}</v-list-item-title>
                             <v-list-item-subtitle>Logged In</v-list-item-subtitle>
                         </v-list-item-content>
@@ -156,7 +156,9 @@ export default Vue.extend({
             messagesCount: 'alert/messagesCount',
             loading: 'loading/getLoading',
             getLeftNavBarDrawer: 'navbar/getLeftNavBarDrawer',
-            username: 'authentication/getUserName'
+            username: 'authentication/getUserName',
+            lastName: 'authentication/getUserLastName',
+            firstName: 'authentication/getUserFirstName'
         }),
         menuItems() {
             // const loggedIn = localStorage.getItem('user')
@@ -182,8 +184,8 @@ export default Vue.extend({
         title() {
             return this.$route.name
         },
-        authCustomer() {
-            return 'xxx'
+        userFullName() {
+            return `${this.firstName} ${this.lastName}`
         },
         unreadRequests() {
             return []
