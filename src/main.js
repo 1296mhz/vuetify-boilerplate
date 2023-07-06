@@ -8,13 +8,8 @@ import { configureFakeBackend } from './_helpers';
 const vueAppFakeApi = process.env.VUE_APP_FAKE_API?.toLowerCase()?.trim();
 
 if (vueAppFakeApi === "true") {
-  console.log("Запускаем")
-}
-
-if (vueAppFakeApi) {
   configureFakeBackend();
 }
-
 
 Vue.config.productionTip = false
 
