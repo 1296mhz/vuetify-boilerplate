@@ -47,5 +47,12 @@ export const authentication = {
             state.status = {};
             state.user = null;
         }
-    }
+    },
+    getters: {
+        getUser: state => state.user,
+        getUserId: state => state.user.id,
+        getUserName: state => state.user.username,
+        getUserFirstName: state => state.user.firstName,
+        getUserLastName: state => state.user.lastName,
+    },
 }

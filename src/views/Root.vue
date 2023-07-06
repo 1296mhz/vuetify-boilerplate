@@ -61,13 +61,6 @@
 
             <v-app-bar app color="primary" dark fixed clipped-left>
                 <v-app-bar-nav-icon @click.stop="leftNavBarDrawer = !leftNavBarDrawer"></v-app-bar-nav-icon>
-                <!-- <v-breadcrumbs :items="breadCrumbs">
-                    <template v-slot:item="{ item }">
-                        <v-breadcrumbs-item :href="item.href" :disabled="item.disabled" exact>
-                            {{ item.text }}
-                        </v-breadcrumbs-item>
-                    </template>
-                </v-breadcrumbs> -->
                 <v-toolbar-title>{{ appTitleText }}</v-toolbar-title>
                 <v-spacer></v-spacer>
                 <!-- 
@@ -115,7 +108,7 @@
                         </v-list>
                     </v-menu>
                 </div> -->
-                <v-toolbar-title>{{ authUser }}</v-toolbar-title>
+                <v-toolbar-title>{{ username }}</v-toolbar-title>
                 <v-btn icon @click="exit()">
                     <v-icon>exit_to_app</v-icon>
                 </v-btn>
@@ -141,7 +134,6 @@
 <script>
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
-// import { filter } from 'lodash'
 export default Vue.extend({
     name: 'RootView',
     data() {
@@ -164,10 +156,8 @@ export default Vue.extend({
             messagesCount: 'alert/messagesCount',
             loading: 'loading/getLoading',
             getLeftNavBarDrawer: 'navbar/getLeftNavBarDrawer',
+            username: 'authentication/getUserName'
         }),
-        // loading() {
-        //     return false
-        // },
         menuItems() {
             // const loggedIn = localStorage.getItem('user')
             // const loggedInJSON = JSON.parse(loggedIn)
@@ -181,12 +171,6 @@ export default Vue.extend({
             // )
             return []
         },
-        // breadCrumbs() {
-        //     if (typeof this.$route.meta.breadCrumb === 'function') {
-        //         return this.$route.meta.breadCrumb.call(this, this.$route)
-        //     }
-        //     return this.$route.meta.breadCrumb
-        // },
         leftNavBarDrawer: {
             get: function () {
                 return this.getLeftNavBarDrawer
@@ -197,9 +181,6 @@ export default Vue.extend({
         },
         title() {
             return this.$route.name
-        },
-        authUser() {
-            return 'xxx@xxx'
         },
         authCustomer() {
             return 'xxx'
@@ -237,7 +218,6 @@ export default Vue.extend({
             this.leftNavBarDrawer = false
         },
         exit() {
-            // this.$store.dispatch('auth/logout')
             this.$router.push('/login')
         },
         signIn() {
@@ -246,9 +226,7 @@ export default Vue.extend({
     },
     beforeDestroy() { },
     created() { },
-    async mounted() {
-        console.log(this.$store)
-    },
+    mounted() { },
 })
 </script>
 <style lang="css" scoped>
