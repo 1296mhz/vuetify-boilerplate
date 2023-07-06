@@ -30,7 +30,7 @@
                 <template v-slot:prepend>
                     <v-list-item two-line>
                         <v-list-item-avatar>
-                            <img src="../assets/users.png" />
+                            <img src="../assets/CharlesMillesManson.png" />
                         </v-list-item-avatar>
 
                         <v-list-item-content>

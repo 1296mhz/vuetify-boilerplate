@@ -4,6 +4,7 @@ import { authHeader } from '../_helpers';
 export const userService = {
     login,
     logout,
+    getProfile,
     getAll
 };
 
@@ -30,6 +31,14 @@ function login(username, password) {
 function logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('user');
+}
+
+function getProfile() {
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader()
+    };
+    return fetch(`${config.apiUrl}/profile`, requestOptions).then(handleResponse);
 }
 
 function getAll() {

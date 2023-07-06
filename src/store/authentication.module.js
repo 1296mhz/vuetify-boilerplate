@@ -55,5 +55,6 @@ export const authentication = {
         getUserName: state => state.user.username,
         getUserFirstName: state => state.user.firstName,
         getUserLastName: state => state.user.lastName,
+        getUserFatherName : state => state.user.fatherName
     },
 }
