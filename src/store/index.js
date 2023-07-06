@@ -4,6 +4,7 @@ import {alert} from './alert.module'
 import {loading} from './loading.module'
 import {navbar} from './navbar.module'
 import {authentication} from './authentication.module'
+import {profile} from './profile.module'
 
 Vue.use(Vuex)
 
@@ -20,7 +21,8 @@ const options = {
     alert,
     loading,
     navbar,
-    authentication
+    authentication,
+    profile
   },
 };
 

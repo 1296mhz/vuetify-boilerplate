@@ -1,7 +1,7 @@
 export function authHeader() {
     let user = JSON.parse(localStorage.getItem('user'));
     if (user && user.accessToken) {
-        return { 'Content-Type': 'application/json', 'xat': user.accessToken,  };
+        return { 'Content-Type': 'application/json', 'Bearer': user.accessToken,  };
     } else {
         return { 'Content-Type': 'application/json'};
     }

@@ -86,12 +86,13 @@ export default Vue.extend({
     mounted() {
     },
     methods: {
-        handleSubmit () {
+        async handleSubmit () {
             this.submitted = true;
             const { username, password } = this;
             const { dispatch } = this.$store;
             if (username && password) {
-                dispatch('authentication/login', { username, password });
+                await dispatch('authentication/login', { username, password });
+                await dispatch('profile/getProfile')
             }
         }
     },

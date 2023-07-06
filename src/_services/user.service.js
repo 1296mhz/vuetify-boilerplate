@@ -35,7 +35,7 @@ function logout() {
 
 function getProfile() {
     const requestOptions = {
-        method: 'GET',
+        method: 'POST',
         headers: authHeader()
     };
     return fetch(`${config.apiUrl}/profile`, requestOptions).then(handleResponse);

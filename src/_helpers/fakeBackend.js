@@ -25,6 +25,7 @@ export function configureFakeBackend() {
                             username: user.username,
                             firstName: user.firstName,
                             lastName: user.lastName,
+                            fatherName: user.fatherName,
                             token: 'All-Pigs-Must-Die-Token'
                         };
                         resolve({ ok: true, text: () => Promise.resolve(JSON.stringify(responseJson)) });
@@ -50,7 +51,8 @@ export function configureFakeBackend() {
                 }
 
                 // get users
-                if (url.endsWith('/profile') && opts.method === 'GET') {
+                if (url.endsWith('/profile') && opts.method === 'POST') {
+                    console.log(opts)
                     // check for fake auth token in header and return users if valid, this security is implemented server side in a real application
                     if (opts.headers && opts.headers.Authorization === 'Bearer All-Pigs-Must-Die-Token') {
                         resolve({
