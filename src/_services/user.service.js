@@ -18,8 +18,9 @@ function login(username, password) {
     return fetch(`${config.apiUrl}/users/authenticate`, requestOptions)
         .then(handleResponse)
         .then(user => {
+            console.log(user)
             // login successful if there's a jwt token in the response
-            if (user.token) {
+            if (user.accessToken) {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('user', JSON.stringify(user));
             }
@@ -35,10 +36,13 @@ function logout() {
 
 function getProfile() {
     const requestOptions = {
-        method: 'POST',
+        method: 'GET',
         headers: authHeader()
     };
+    console.log(requestOptions)
     return fetch(`${config.apiUrl}/profile`, requestOptions).then(handleResponse);
+
+    // return fetch(`${config.apiUrl}/users`, requestOptions).then(handleResponse);
 }
 
 function getAll() {
