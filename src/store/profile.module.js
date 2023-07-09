@@ -5,26 +5,31 @@ export const profile = {
     namespaced: true,
     state: {
         avatar: '',
+        about: '',
     },
     mutations: {
         setAvatar(state, avatar) {
             Vue.set(state, 'avatar', avatar);
         },
+        setAbout(state, about){
+            Vue.set(state, 'about', about);
+        }
     },
     actions: {
         // { dispatch, commit }
-        async getProfile() { 
+        async getProfile({commit}) { 
             try{
                 const res = await userService.getProfile();
-                console.log(res)
+                commit('setAvatar', res.avatar);
+                commit('setAbout', res.about)
             }catch(error){
-                console.log("Хуй на руль")
                 console.log(error)
             }
             
         }
     },
     getters: {
-        getaAvatar: state => state.avatar
+        getAvatar: state => state.avatar,
+        getAbout: state => state.about,
     },
 };

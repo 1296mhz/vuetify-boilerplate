@@ -30,7 +30,8 @@
                 <template v-slot:prepend>
                     <v-list-item two-line>
                         <v-list-item-avatar>
-                            <img src="../assets/CharlesMillesManson.png" />
+                            <!-- <img src="../assets/CharlesMillesManson.png" /> -->
+                            <img :src="getAvatar" />
                         </v-list-item-avatar>
 
                         <v-list-item-content>
@@ -158,7 +159,9 @@ export default Vue.extend({
             getLeftNavBarDrawer: 'navbar/getLeftNavBarDrawer',
             username: 'authentication/getUserName',
             lastName: 'authentication/getUserLastName',
-            firstName: 'authentication/getUserFirstName'
+            firstName: 'authentication/getUserFirstName',
+            getAvatar: 'profile/getAvatar',
+            getAbout: 'profile/getAbout'
         }),
         menuItems() {
             // const loggedIn = localStorage.getItem('user')
