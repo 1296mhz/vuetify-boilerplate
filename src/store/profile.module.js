@@ -16,7 +16,6 @@ export const profile = {
         }
     },
     actions: {
-        // { dispatch, commit }
         async getProfile({commit}) { 
             try{
                 const res = await userService.getProfile();
@@ -24,8 +23,7 @@ export const profile = {
                 commit('setAbout', res.about)
             }catch(error){
                 console.log(error)
-            }
-            
+            }   
         }
     },
     getters: {
