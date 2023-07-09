@@ -16,6 +16,15 @@ export const profile = {
         },
         setAbout(state, about){
             Vue.set(state, 'about', about);
+        },
+        setFirstName(state, firstName){
+            Vue.set(state, 'firstName', firstName);
+        },
+        setFatherName(state, fatherName){
+            Vue.set(state, 'fatherName', fatherName);
+        },
+        setLastName(state, lastName){
+            Vue.set(state, 'lastName', lastName);
         }
     },
     actions: {
@@ -24,8 +33,11 @@ export const profile = {
                 const res = await userService.getProfile();
                 commit('setAvatar', res.avatar);
                 commit('setAbout', res.about)
+                commit('setFirstName', res.firstName)
+                commit('setLastName', res.lastName)
+                commit('setFatherName', res.fatherName)
             }catch(error){
-                console.log(error)
+                Vue.$log.error(error);
             }   
         }
     },

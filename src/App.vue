@@ -5,14 +5,17 @@
 </template>
 
 <script>
-
-export default {
+import Vue from 'vue'
+export default Vue.extend({
   name: 'App',
   components: {
   },
   data: () => ({
   }),
   methods: {
+  },
+  created() {
+    Vue.$log.debug('App started');
   }
-};
+});
 </script>

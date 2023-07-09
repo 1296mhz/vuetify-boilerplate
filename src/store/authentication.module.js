@@ -1,5 +1,6 @@
 import { userService } from '../_services';
 import router from '../_helpers/router';
+import Vue from 'vue';
 
 const user = JSON.parse(localStorage.getItem('user'));
 const initialState = user
@@ -20,7 +21,7 @@ export const authentication = {
                         router.push('/');
                     },
                     error => {
-                        console.log(error)
+                        Vue.$log.error(error)
                         commit('loginFailure', error);
                         dispatch('alert/error', error, { root: true });
                     }

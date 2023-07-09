@@ -157,8 +157,9 @@ export default Vue.extend({
             loading: 'loading/getLoading',
             getLeftNavBarDrawer: 'navbar/getLeftNavBarDrawer',
             username: 'authentication/getUserName',
-            lastName: 'authentication/getUserLastName',
-            firstName: 'authentication/getUserFirstName',
+            lastName: 'profile/getUserLastName',
+            firstName: 'profile/getUserFirstName',
+            fatherName: 'profile/getUserFatherName',
             getAvatar: 'profile/getAvatar',
             getAbout: 'profile/getAbout'
         }),

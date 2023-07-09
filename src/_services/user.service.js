@@ -35,10 +35,7 @@ function getProfile() {
         method: 'GET',
         headers: authHeader()
     };
-    console.log(requestOptions)
     return fetch(`${config.apiUrl}/profile`, requestOptions).then(handleResponse);
-
-    // return fetch(`${config.apiUrl}/users`, requestOptions).then(handleResponse);
 }
 
 function getAll() {
