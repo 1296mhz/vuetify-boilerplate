@@ -163,17 +163,13 @@ export default Vue.extend({
             getAbout: 'profile/getAbout'
         }),
         menuItems() {
-            // const loggedIn = localStorage.getItem('user')
-            // const loggedInJSON = JSON.parse(loggedIn)
-            // return filter(
-            //     this.$router.options.routes[1].children,
-            //     (v) => {
-            //         return !(
-            //             !v.meta.authorize.includes(loggedInJSON.data.role)
-            //         )
-            //     }
-            // )
-            return []
+            return [
+                {
+                    icon: 'face',
+                    name: 'Profile',
+                    path: '/profile'
+                }
+            ]
         },
         leftNavBarDrawer: {
             get: function () {
@@ -189,34 +185,9 @@ export default Vue.extend({
         userFullName() {
             return `${this.firstName} ${this.lastName}`
         },
-        unreadRequests() {
-            return []
-            // return Vue._.filter(
-            //     this.$store.getters[`message/${MESSAGE_GETTER.GET_REQUESTS}`],
-            //     (value) => !value.read
-            // ).slice(-3)
-        },
-        requests() {
-            return []
-            // return this.$store.getters[`message/${MESSAGE_GETTER.GET_REQUESTS}`]
-        },
-        unreadRequestsCount() {
-            return []
-            // return this.$store.getters[
-            //     `message/${MESSAGE_GETTER.GET_UNREADREQUESTS}`
-            // ]
-        },
     },
-
     watch: {
-        // errorsCount: function () {
-        //     this.errorBar = true
-        // },
-        // messagesCount: function () {
-        //     this.messageBar = true
-        // },
     },
-
     methods: {
         closeMenu() {
             this.leftNavBarDrawer = false
