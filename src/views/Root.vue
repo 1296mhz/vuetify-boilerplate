@@ -5,14 +5,14 @@
         </v-overlay>
         <v-app id="inspire">
             <v-app-bar app color="primary" dark>
-                <div class="d-flex align-center">
+                <!-- <div class="d-flex align-center">
                     <v-img alt="Vuetify Logo" class="shrink mr-2" contain
                         src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png" transition="scale-transition"
                         width="40" />
 
                     <v-img alt="Vuetify Name" class="shrink mt-1 hidden-sm-and-down" contain min-width="100"
                         src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png" width="100" />
-                </div>
+                </div> -->
 
                 <v-spacer></v-spacer>
 
@@ -30,7 +30,6 @@
                 <template v-slot:prepend>
                     <v-list-item two-line>
                         <v-list-item-avatar>
-                            <!-- <img src="../assets/CharlesMillesManson.png" /> -->
                             <img :src="getAvatar" />
                         </v-list-item-avatar>
 

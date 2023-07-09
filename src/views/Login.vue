@@ -91,8 +91,10 @@ export default Vue.extend({
             const { username, password } = this;
             const { dispatch } = this.$store;
             if (username && password) {
+                await dispatch('loading/setLoading', true)
                 await dispatch('authentication/login', { username, password });
                 await dispatch('profile/getProfile')
+                await dispatch('loading/setLoading', false)
             }
         }
     },
