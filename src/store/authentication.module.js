@@ -10,10 +10,10 @@ export const authentication = {
     namespaced: true,
     state: initialState,
     actions: {
-        login({ dispatch, commit }, { username, password }) {
+        async login({ dispatch, commit }, { username, password }) {
             commit('loginRequest', { username });
 
-            userService.login(username, password)
+            await userService.login(username, password)
                 .then(
                     user => {
                         commit('loginSuccess', user);
@@ -55,6 +55,6 @@ export const authentication = {
         getUserName: state => state.user.username,
         getUserFirstName: state => state.user.firstName,
         getUserLastName: state => state.user.lastName,
-        getUserFatherName : state => state.user.fatherName
+        getUserFatherName: state => state.user.fatherName
     },
 }
