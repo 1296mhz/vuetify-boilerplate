@@ -29,8 +29,8 @@
             <v-navigation-drawer v-model="leftNavBarDrawer" app disable-resize-watcher disable-route-watcher temporary>
                 <template v-slot:prepend>
                     <v-list-item two-line>
-                        <v-list-item-avatar>
-                            <img :src="getAvatar" />
+                        <v-list-item-avatar size="80">
+                            <img :src="getAvatar" height="64"  width="64" />
                         </v-list-item-avatar>
 
                         <v-list-item-content>

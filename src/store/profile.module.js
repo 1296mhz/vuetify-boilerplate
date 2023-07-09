@@ -6,6 +6,9 @@ export const profile = {
     state: {
         avatar: '',
         about: '',
+        firstName: '',
+        lastName: '',
+        fatherName: ''
     },
     mutations: {
         setAvatar(state, avatar) {
@@ -29,5 +32,8 @@ export const profile = {
     getters: {
         getAvatar: state => state.avatar,
         getAbout: state => state.about,
+        getUserFirstName: state => state.firstName,
+        getUserLastName: state => state.lastName,
+        getUserFatherName: state => state.fatherName
     },
 };

@@ -1,75 +1,105 @@
 <template>
-        <v-container fluid>
-            <!-- <v-row justify="space-around" no-gutters>
+    <v-container fluid>
+        <!-- <v-row justify="space-around" no-gutters>
                 <v-col> -->
-                    <v-card :loading="loading" class="mx-auto" max-width="434" tile>
-                        <template slot="progress">
-                            <v-progress-linear color="deep-purple" height="10" indeterminate></v-progress-linear>
-                        </template>
+        <v-card :loading="loading" class="mx-auto" max-width="434" tile>
+            <template slot="progress">
+                <v-progress-linear color="deep-purple" height="10" indeterminate></v-progress-linear>
+            </template>
 
-                        <v-img height="250" src="https://cdn.vuetifyjs.com/images/cards/cooking.png"></v-img>
+            <v-img height="250" src="../assets/material.jpg"></v-img>
+            <v-col>
+                <v-avatar size="100" id="avatar">
+                    <v-img :src="getAvatar"></v-img>
+                </v-avatar>
+            </v-col>
+            <v-card-title>Cafe Badilico</v-card-title>
 
-                        <v-card-title>Cafe Badilico</v-card-title>
+            <v-card-text>
+                <v-row align="center" class="mx-0">
+                    <v-rating :value="4.5" color="amber" dense half-increments readonly size="14"></v-rating>
 
-                        <v-card-text>
-                            <v-row align="center" class="mx-0">
-                                <v-rating :value="4.5" color="amber" dense half-increments readonly size="14"></v-rating>
+                    <div class="grey--text ms-4">
+                        4.5 (413)
+                    </div>
+                </v-row>
 
-                                <div class="grey--text ms-4">
-                                    4.5 (413)
-                                </div>
-                            </v-row>
+                <div class="my-4 text-subtitle-1">
+                    $ • Italian, Cafe
+                </div>
 
-                            <div class="my-4 text-subtitle-1">
-                                $ • Italian, Cafe
-                            </div>
+                <div>Small plates, salads & sandwiches - an intimate setting with 12 indoor seats plus patio
+                    seating.</div>
+            </v-card-text>
 
-                            <div>Small plates, salads & sandwiches - an intimate setting with 12 indoor seats plus patio
-                                seating.</div>
-                        </v-card-text>
+            <v-divider class="mx-4"></v-divider>
 
-                        <v-divider class="mx-4"></v-divider>
+            <v-card-title>Tonight's availability</v-card-title>
 
-                        <v-card-title>Tonight's availability</v-card-title>
+            <v-card-text>
+                <v-chip-group v-model="selection" active-class="deep-purple accent-4 white--text" column>
+                    <v-chip>5:30PM</v-chip>
 
-                        <v-card-text>
-                            <v-chip-group v-model="selection" active-class="deep-purple accent-4 white--text" column>
-                                <v-chip>5:30PM</v-chip>
+                    <v-chip>7:30PM</v-chip>
 
-                                <v-chip>7:30PM</v-chip>
+                    <v-chip>8:00PM</v-chip>
 
-                                <v-chip>8:00PM</v-chip>
+                    <v-chip>9:00PM</v-chip>
+                </v-chip-group>
+            </v-card-text>
 
-                                <v-chip>9:00PM</v-chip>
-                            </v-chip-group>
-                        </v-card-text>
-
-                        <v-card-actions>
-                            <v-btn color="deep-purple lighten-2" text @click="reserve">
-                                Reserve
-                            </v-btn>
-                        </v-card-actions>
-                    </v-card>
-                <!-- </v-col>
+            <v-card-actions>
+                <v-btn color="deep-purple lighten-2" text @click="reserve">
+                    Reserve
+                </v-btn>
+            </v-card-actions>
+        </v-card>
+        <!-- </v-col>
             </v-row> -->
 
-        </v-container>
+    </v-container>
 </template>
 
 <script>
-export default {
+import Vue from 'vue'
+import { mapGetters } from 'vuex'
+export default Vue.extend({
     name: 'ProfileView',
     data: () => ({
         loading: false,
         selection: 1,
     }),
+    computed: {
+        ...mapGetters({
+            lastError: 'alert/lastError',
+            errorsCount: 'alert/errorsCount',
+            lastMessage: 'alert/lastMessage',
+            messagesCount: 'alert/messagesCount',
+            // loading: 'loading/getLoading',
+            getLeftNavBarDrawer: 'navbar/getLeftNavBarDrawer',
+            username: 'authentication/getUserName',
+            lastName: 'authentication/getUserLastName',
+            firstName: 'authentication/getUserFirstName',
+            getAvatar: 'profile/getAvatar',
+            getAbout: 'profile/getAbout'
+        }),
+
+    },
 
     methods: {
         reserve() {
             this.loading = true
-
             setTimeout(() => (this.loading = false), 2000)
         },
     },
-}
+})
 </script>
+
+<style lang="css" scoped>
+#avatar {
+    /* background-color: #009688;
+    background-size: cover; */
+    position: absolute;
+    top: 150px;
+}
+</style>
